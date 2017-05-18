@@ -1,0 +1,27 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.1)
+    colorize (0.8.1)
+    facets (3.1.0)
+    method_source (0.8.2)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    slop (3.6.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
+    unicode-display_width (1.2.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize
+  facets
+  pry
+  terminal-table
+
+BUNDLED WITH
+   1.14.6
