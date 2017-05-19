@@ -20,12 +20,13 @@ data.each do |container_data|
 
 	puts <<~ENDC
 		Name: #{c.name}
+		Status: TODO
 		Project: #{c.project}
 		Image:
 		  Host: #{c.image.host}
 		  Name: #{c.image.name}
 		  Tag: #{c.image.tag}
-		Status: TODO
+		Networks: #{c.networks.join(', ')}
 		Health: #{c.problems? ? 'bad'.red : 'good'.green}
 		#{c.features.to_h.map do |_, f|
 		next <<~ENDF
