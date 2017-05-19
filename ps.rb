@@ -3,7 +3,6 @@
 require 'json'
 require 'bundler'
 Bundler.require
-Bundler.require(:development)
 
 require_relative './container'
 
