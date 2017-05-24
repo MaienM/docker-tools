@@ -28,6 +28,10 @@ module Container
 			return raw['Name'][1..-1]
 		end
 
+		def status
+			return raw['State']['Status']
+		end
+
 		def image
 			image = REGEX_IMAGE.match(raw['Config']['Image']).named_captures
 			image = OpenStruct.new(image)
@@ -55,6 +59,6 @@ module Container
 			return features.to_h.values.select(&:present?).map(&:problems).flatten.compact
 		end
 
-		memoize *%i(name image env networks project problems)
+		memoize *%i(name status image env networks project problems)
 	end
 end

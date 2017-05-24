@@ -3,7 +3,10 @@ GEM
   specs:
     coderay (1.1.1)
     colorize (0.8.1)
+    commander (4.4.3)
+      highline (~> 1.7.2)
     facets (3.1.0)
+    highline (1.7.8)
     method_source (0.8.2)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -19,6 +22,7 @@ PLATFORMS
 
 DEPENDENCIES
   colorize
+  commander
   facets
   pry
   terminal-table
