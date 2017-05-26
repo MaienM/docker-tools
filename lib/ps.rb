@@ -22,7 +22,7 @@ class App
 		def self.container(c)
 			return [
 				c.name,
-				c.project,
+				c.features.compose.project,
 				image(c.image),
 				c.status,
 				other(c),

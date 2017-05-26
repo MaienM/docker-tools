@@ -19,5 +19,7 @@ module Container::Features
 		def name
 			return @container.env['ADMINER_NAME']
 		end
+
+		fields :name
 	end
 end

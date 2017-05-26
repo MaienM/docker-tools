@@ -23,7 +23,6 @@ class App
 			return <<~END.rstrip
 				Name: #{c.name}
 				Status: #{c.status}
-				Project: #{c.project}
 				Image:
 				#{image(c.image).rstrip.indent(INDENT)}
 				Networks: #{c.networks.join(', ')}
@@ -44,18 +43,28 @@ class App
 			return unless f.present?
 			return <<~END.rstrip
 				#{f.class.basename}:
-				#{_feature_present(f).indent(INDENT) if f.present?}
+				#{_feature_present(f).andand.indent(INDENT)}
 			END
 		end
 
 		def self._feature_present(f)
+			return unless f.present?
+			return [
+				_feature_health(f),
+				f.class.fields.map { |ff| "#{ff.to_s.titlecase}: #{f.send(ff)}" }.join("\n").rstrip,
+			].compact.join("\n").rstrip
+		end
+
+		def self._feature_health(f)
+			return unless f.supports_problems?
 			return <<~END.rstrip
 				Health: #{f.problems? ? 'poor'.red : 'good'.green}
-				#{_feature_problems(f) if f.problems?}
+				#{_feature_problems(f)}
 			END
 		end
 
 		def self._feature_problems(f)
+			return unless f.problems?
 			return <<~END.rstrip
 				Problems:
 				#{f.problems.compact.join("\n").rstrip.indent(INDENT)}

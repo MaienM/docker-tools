@@ -43,12 +43,12 @@ module Container
 			return raw['Config']['Env'].map { |e| e.split('=', 2) }.to_h
 		end
 
-		def networks
-			return raw['NetworkSettings']['Networks'].keys
+		def labels
+			return raw['Config']['Labels']
 		end
 
-		def project
-			return raw['Config']['Labels']['com.docker.compose.project']
+		def networks
+			return raw['NetworkSettings']['Networks'].keys
 		end
 
 		def problems?
@@ -59,6 +59,6 @@ module Container
 			return features.to_h.values.select(&:present?).map(&:problems).flatten.compact
 		end
 
-		memoize *%i(name status image env networks project problems)
+		memoize *%i(name status image env networks problems)
 	end
 end

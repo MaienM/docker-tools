@@ -19,5 +19,7 @@ module Container::Features
 		def hosts
 			return (@container.env['VIRTUAL_HOST'] || '').split(',')
 		end
+
+		fields :hosts
 	end
 end
