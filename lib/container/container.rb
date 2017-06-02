@@ -29,7 +29,30 @@ module Container
 		end
 
 		def status
-			return raw['State']['Status']
+			state = raw['State']
+			info = {
+				running: state['Running'],
+				created: DateTime.parse(raw['Created']),
+				status: state['Status'],
+			}
+			if info[:running]
+				info[:statusExtra] = {
+					pid: state['Pid'],
+				}
+				info[:since] = DateTime.parse(state['StartedAt'])
+			else
+				info[:statusExtra] = {
+					exitCode: state['ExitCode'],
+					oom: state['OOMKilled'],
+				}
+				info[:since] = DateTime.parse(state['FinishedAt'])
+			end
+			info[:statusExtra][:error] = state['Error'] unless state['Error'].empty?
+
+			info = OpenStruct.new(info)
+			info.statusExtra = OpenStruct.new(info.statusExtra)
+
+			return info
 		end
 
 		def image

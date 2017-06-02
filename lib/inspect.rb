@@ -22,12 +22,23 @@ class App
 		def self.container(c)
 			return <<~END.rstrip
 				Name: #{c.name}
-				Status: #{c.status}
+				Status:
+				#{status(c.status).rstrip.indent(INDENT)}
 				Image:
 				#{image(c.image).rstrip.indent(INDENT)}
 				Networks: #{c.networks.join(', ')}
 				Health: #{c.problems? ? 'poor'.red : 'good'.green}
 				#{c.features.to_h.values.map(&method(:feature)).compact.join("\n").rstrip}
+			END
+		end
+
+		def self.status(s)
+			return <<~END.rstrip
+				Status: #{s.status} (#{s.statusExtra.to_h.map do |k, v|
+					next v == !!v ? (v && k) : "#{k}: #{v}"
+				end.compact.join(', ')})
+				Since: #{s.since.format_time_since} (#{s.since})
+				Created: #{s.created.format_time_since} (#{s.created})
 			END
 		end
 

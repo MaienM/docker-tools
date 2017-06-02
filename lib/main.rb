@@ -4,6 +4,8 @@ require 'bundler'
 Bundler.require
 Bundler.require(:development)
 
+require_relative './ext'
+
 class App
 	include Commander::Methods
 

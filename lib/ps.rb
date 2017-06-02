@@ -24,7 +24,7 @@ class App
 				c.name,
 				c.features.compose.project,
 				image(c.image),
-				c.status,
+				"#{c.status.status} #{c.status.since.format_time_since(format: :short, units: 3)}",
 				other(c),
 			]
 		end
