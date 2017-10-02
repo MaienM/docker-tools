@@ -10,5 +10,17 @@ Gem::Specification.new do |s|
 	s.executable  = 'docker-tools'
 	s.homepage    = 'https://github.com/MaienM/docker-tools'
 	s.license     = 'MIT'
+
+	# Extension methods
+	s.add_dependency 'facets'
+	s.add_dependency 'andand'
+	# Command line stuff
+	s.add_dependency 'commander'
+	s.add_dependency 'colorize'
+	s.add_dependency 'terminal-table'
+	# Other?
+	s.add_dependency 'chronic_duration'
+	# Development
+	s.add_development_dependency 'pry'
 end
 

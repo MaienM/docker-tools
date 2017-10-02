@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'bundler'
-Bundler.require
-Bundler.require(:development)
-
+require 'facets'
+require 'andand'
+require 'commander'
+require 'colorize'
+require 'terminal-table'
+require 'chronic_duration'
 require_relative './ext'
 
 class App

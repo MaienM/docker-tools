@@ -1,17 +1,5 @@
 source 'https://rubygems.org'
 
-# Extension methods
-gem 'facets'
-gem 'andand'
+# Specify your gem's dependencies in filter_lexer.gemspec
+gemspec
 
-# Command line stuff
-gem 'commander'
-gem 'colorize'
-gem 'terminal-table'
-
-# Other?
-gem 'chronic_duration'
-
-group :development do
-	gem 'pry'
-end
